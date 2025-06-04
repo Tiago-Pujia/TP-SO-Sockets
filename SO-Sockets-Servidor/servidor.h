@@ -7,13 +7,13 @@
 ============================================================
 */
 
-#include <stdio.h>        // Entrada/salida estándar (printf, perror, etc.)
-#include <stdlib.h>       // Manejo de memoria dinámica y finalización del programa
-#include <string.h>       // Manipulación de cadenas (strlen, snprintf, etc.)
+#include <stdio.h>        // Entrada/salida estï¿½ndar (printf, perror, etc.)
+#include <stdlib.h>       // Manejo de memoria dinï¿½mica y finalizaciï¿½n del programa
+#include <string.h>       // Manipulaciï¿½n de cadenas (strlen, snprintf, etc.)
 #include <unistd.h>       // Funciones del sistema POSIX (close, sleep, etc.)
-#include <pthread.h>      // Manejo de hilos y sincronización (mutex, cond)
-#include <arpa/inet.h>    // Conversión y manejo de direcciones IP
-#include <signal.h>       // Manejo de señales del sistema (SIGINT, SIGPIPE)
+#include <pthread.h>      // Manejo de hilos y sincronizaciï¿½n (mutex, cond)
+#include <arpa/inet.h>    // Conversiï¿½n y manejo de direcciones IP
+#include <signal.h>       // Manejo de seï¿½ales del sistema (SIGINT, SIGPIPE)
 #include <netinet/in.h>   // Estructuras para sockets TCP (sockaddr_in)
 #include <time.h>         // Tiempo y aleatoriedad (time, rand, srand)
 
@@ -24,8 +24,8 @@
 */
 
 #define PUERTO 8080      // Puerto TCP en el que escucha el servidor
-#define BUFFER_SIZE 128  // Tamaño del buffer para mensajes de red
-#define MAX_CLIENTES 3   // Máximo de clientes concurrentes aceptados
+#define BUFFER_SIZE 128  // Tamaï¿½o del buffer para mensajes de red
+#define MAX_CLIENTES 3   // Mï¿½ximo de clientes concurrentes aceptados
 
 /*
 ============================================================
@@ -34,13 +34,13 @@
 */
 
 /**
- * Representa la información de un cliente conectado.
- * Contiene el descriptor del socket y la dirección del cliente.
+ * Representa la informaciï¿½n de un cliente conectado.
+ * Contiene el descriptor del socket y la direcciï¿½n del cliente.
  */
 typedef struct
 {
     int socket;                   // Descriptor del socket del cliente
-    struct sockaddr_in direccion; // Dirección IP y puerto del cliente
+    struct sockaddr_in direccion; // Direcciï¿½n IP y puerto del cliente
 } ClienteInfo;
 
 /**
@@ -69,16 +69,16 @@ typedef struct
 void iniciar_servidor();
 
 /**
- * Función ejecutada por cada hilo que atiende a un cliente.
+ * Funciï¿½n ejecutada por cada hilo que atiende a un cliente.
  * Recibe y procesa los mensajes, emite alertas si es necesario.
  * @param arg Paquete con ClienteInfo* y GestorClientes*
  */
 void *atender_cliente(void *arg);
 
 /**
- * Envía un mensaje de alerta a todos los clientes conectados.
+ * Envï¿½a un mensaje de alerta a todos los clientes conectados.
  */
-void enviar_alerta_todos(GestorClientes *gestor, const char *mensaje)
+void enviar_alerta_todos(GestorClientes *gestor, const char *mensaje);
 
 /**
  * Cierra todos los sockets, recursos y finaliza el servidor limpiamente.
@@ -86,8 +86,8 @@ void enviar_alerta_todos(GestorClientes *gestor, const char *mensaje)
 void cerrar_servidor();
 
 /**
- * Maneja señales del sistema o desconexiones abruptas.
- * @param senial Número de señal recibida (ej: SIGINT).
+ * Maneja seï¿½ales del sistema o desconexiones abruptas.
+ * @param senial Nï¿½mero de seï¿½al recibida (ej: SIGINT).
  */
 void manejar_senial(int senial);
 
