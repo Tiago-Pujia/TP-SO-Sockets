@@ -43,7 +43,7 @@ void *atender_cliente(void *arg)
             if(valor < 0 || valor > 40)
             {
                 char alerta[BUFFER_SIZE];
-                snprintf(alerta, sizeof(alerta), "ALERTA: temperatura fuera de rango (%d�C)\n", valor);
+                snprintf(alerta, sizeof(alerta), "ALERTA: temperatura fuera de rango (%d C)\n", valor);
                 enviar_alerta_todos(gestor, alerta);
             }
             else
@@ -123,9 +123,12 @@ void iniciar_servidor()
         pthread_mutex_lock(&gestor->mutex);
 
         // Esperar hasta que haya espacio
-        while(gestor->cantidad_clientes >= MAX_CLIENTES)
+        while(gestor->cantidad_clientes >= MAX_CLIENTES){
+            printf("[Servidor] Cola llena (%d clientes). Esperando que alguien se desconecte...\n",
+            MAX_CLIENTES);
+            fflush(stdout);
             pthread_cond_wait(&espacio_disponible, &gestor->mutex);
-
+        }
         gestor->clientes[gestor->cantidad_clientes++] = cliente->socket;
         pthread_mutex_unlock(&gestor->mutex);
 

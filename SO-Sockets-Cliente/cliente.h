@@ -15,6 +15,7 @@
 #include <netinet/in.h>
 #include <time.h>
 
+
 void iniciar_cliente();
 void *escuchar_servidor(void *arg);
 void* enviar_datos(void* arg);

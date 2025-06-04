@@ -55,6 +55,9 @@ void iniciar_cliente()
         perror("Error al conectar");
         exit(1);
     }
+    printf("[Cliente] Conectado al servidor. "
+            "Si el servidor esta lleno, espere a que se libere un lugar...\n");
+    fflush(stdout);
 
     pthread_t escucha, emisor;
     pthread_create(&escucha, NULL, escuchar_servidor, &sockfd);
@@ -110,7 +113,7 @@ void iniciar_cliente()
 
         send(sockfd, buffer, strlen(buffer), 0);
 
-        // Chequear si el usuario quiere salir (no automï¿½tico)
+        // Chequear si el usuario quiere salir (no automático)
         printf("Escriba 'salir' para terminar: ");
         fgets(buffer, BUFFER_SIZE, stdin);
         fflush(stdin);
