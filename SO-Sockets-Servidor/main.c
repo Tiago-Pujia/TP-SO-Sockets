@@ -2,6 +2,6 @@
 
 int main()
 {
-    iniciar_servidor();
+    iniciar_servidor(); // Inicializa y ejecuta el ciclo principal del servidor
     return 0;
 }
