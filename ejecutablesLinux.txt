@@ -1,0 +1,10 @@
+/mnt/c/Users/Diego/Desktop/LOS\ DOMINGUEZ/Luana\ Unlam/Sistemas\ Operativos/Servidor-Cliente/
+
+gcc main.c servidor.c -o servidor -lpthread
+
+./servidor
+
+
+gcc cliente.c -o cliente -lpthread
+
+./cliente
