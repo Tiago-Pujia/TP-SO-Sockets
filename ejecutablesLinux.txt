@@ -1,10 +1,62 @@
-/mnt/c/Users/Diego/Desktop/LOS\ DOMINGUEZ/Luana\ Unlam/Sistemas\ Operativos/Servidor-Cliente/
+ ejercicio 2
+cd "/mnt/c/Users/Diego/Desktop/LOS DOMINGUEZ/Luana Unlam/Sistemas Operativos/TP-SO-Sockets-master"
 
 gcc main.c servidor.c -o servidor -lpthread
-
 ./servidor
 
 
-gcc cliente.c -o cliente -lpthread
-
+gcc main_cliente.c cliente.c -o cliente -lpthread
 ./cliente
+
+
+
+Ver todos los procesos asociados (incluyendo threads):
+ps -eLf | grep -E "servidor|cliente"
+
+Monitoreo interactivo con htop
+htop -p $(pgrep -d ',' servidor),$(pgrep -d ',' cliente)
+
+Listar conexiones activas con netstat:
+sudo netstat -tulnp | grep -E "servidor|cliente"
+sudo netstat -tulnp | grep ":8080"
+
+Ver archivos abiertos (sockets) con lsof:
+sudo lsof -i :8080
+
+
+
+
+
+ejercicio 1:
+gcc -o procesos_paralelos main.c funciones.c -lrt -pthread
+
+cd "/mnt/c/Users/Diego/Desktop/LOS DOMINGUEZ/Luana Unlam/Sistemas Operativos/procesos_paralelos"
+
+Para ver procesos hijos POSIX:
+ps -ef | grep procesos_paralelos
+
+Para ver los procesos padres, hijos, y el Proceso:
+ps -o pid,ppid,cmd -p $(pgrep -d',' -f ./main)
+
+Para ver memoria compartida y semáforos:
+ipcs -a
+
+Para monitoreo activo:
+top -p $(pgrep procesos_paralelos)
+o
+top -p $(pgrep -d',' -f ./main)
+
+htop -p $(pgrep -d ',' procesos_paralelos)
+
+Estadísticas del sistema cada 1seg:
+vmstat 1
+
+Mostrar procesos corriendo:
+ps -ef –-forest 
+
+
+
+
+
+
+
